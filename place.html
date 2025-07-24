@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Japan</title>
+  <link rel="stylesheet" href="styles/place.css" />
+  <script src="scripts/place.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Japan</h1>
+  </header>
+
+  <main>
+    <picture>
+      <source srcset="images/japan-large.webp" media="(min-width: 640px)" />
+      <img src="images/japan-small.webp" alt="Scenery of Japan" />
+    </picture>
+
+    <section class="data-card">
+      <h2>Data</h2>
+      <ul>
+        <li><strong>Area:</strong> 377,975 sq km</li>
+        <li><strong>Population:</strong> 125,800,000</li>
+        <li><strong>Capital:</strong> Tokyo</li>
+        <li><strong>Languages:</strong> Japanese</li>
+        <li><strong>Currency:</strong> Japanese Yen</li>
+        <li><strong>Time Zone:</strong> UTC+9</li>
+        <li><strong>Calling Code:</strong> +81</li>
+        <li><strong>Internet TLD:</strong> .jp</li>
+      </ul>
+    </section>
+
+    <section class="weather-card">
+      <h2>Weather</h2>
+      <img src="images/weather-icon.svg" alt="Weather Icon" class="weather-icon" />
+      <ul>
+        <li><strong>Temperature:</strong> 12°C</li>
+        <li><strong>Conditions:</strong> Partly Cloudy</li>
+        <li><strong>Wind:</strong> 10 km/h</li>
+        <li><strong>Wind Chill:</strong> <span id="windChill">N/A</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Herwin Vincent Gaela | Japan</p>
+    <p>Last Modification: <span id="lastModified"></span></p>
+  </footer>
+</body>
+</html>

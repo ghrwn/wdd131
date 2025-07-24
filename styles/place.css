@@ -1,0 +1,114 @@
+:root {
+  --primary-color: #bf1e2e;
+  --secondary-color: #117744;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --text-dark: #222;
+  --text-light: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text-dark);
+}
+
+header {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  text-align: center;
+  padding: 1rem;
+}
+
+main {
+  position: relative;
+}
+
+picture img {
+  width: 100%;
+  display: block;
+}
+
+.data-card,
+.weather-card {
+  background-color: var(--card-bg);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  width: 260px;
+}
+
+.data-card h2,
+.weather-card h2 {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.5rem;
+  margin: -1rem -1rem 1rem -1rem;
+  border-radius: 8px 8px 0 0;
+}
+
+.data-card ul,
+.weather-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.data-card li,
+.weather-card li {
+  padding: 0.2rem 0;
+}
+
+/* Positioning */
+.data-card {
+  top: 1rem;
+  left: 1rem;
+}
+
+.weather-card {
+  bottom: 1rem;
+  right: 1rem;
+  text-align: left;
+}
+
+.weather-icon {
+  width: 32px;
+  height: 32px;
+  float: right;
+  margin-top: -2.5rem;
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .data-card,
+  .weather-card {
+    position: static;
+    width: auto;
+    margin: 1rem;
+  }
+
+  .weather-icon {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
