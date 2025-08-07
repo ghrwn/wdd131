@@ -1,0 +1,95 @@
+/* Global Settings */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+header {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+h1, h2 {
+  font-family: 'Lato', sans-serif;
+}
+
+button {
+  background-color: #FF5722;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e64a19;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  padding-top: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    position: static;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .top-nav {
+    display: block;
+    text-align: center;
+  }
+
+  button {
+    width: 100%;
+  }
+}

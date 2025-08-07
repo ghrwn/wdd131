@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Tracker Pro - Log Exercise</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="exercise-log.html">Exercise Log</a></li>
+      <li><a href="progress-tracker.html">Progress Tracker</a></li>
+      <li><a href="#">Settings</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <header>
+      <div class="top-nav">
+        <a href="index.html">Fitness Tracker Pro</a>
+        <input type="text" placeholder="Search..." />
+        <button>Upload</button>
+        <button>Notifications</button>
+        <button>Settings</button>
+      </div>
+    </header>
+
+    <main>
+      <h2>Log Your Exercise</h2>
+      <form id="exercise-form">
+        <label for="exercise-name">Exercise:</label>
+        <input type="text" id="exercise-name" name="exercise-name" required>
+
+        <label for="duration">Duration (minutes):</label>
+        <input type="number" id="duration" name="duration" required>
+
+        <label for="calories">Calories Burned:</label>
+        <input type="number" id="calories" name="calories" required>
+
+        <button type="submit">Log Exercise</button>
+      </form>
+    </main>
+  </div>
+
+  <footer>
+    <p>Last Modified: <span id="lastModified"></span></p>
+    <p><a href="references.html">References</a></p>
+  </footer>
+
+  <script>
+    document.getElementById('lastModified').textContent = document.lastModified;
+
+    const exercises = JSON.parse(localStorage.getItem("exercises")) || [];
+
+    const exerciseForm = document.getElementById("exercise-form");
+
+    exerciseForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById("exercise-name").value;
+      const duration = document.getElementById("duration").value;
+      const calories = document.getElementById("calories").value;
+
+      const newExercise = { name, duration, calories };
+      exercises.push(newExercise);
+      localStorage.setItem("exercises", JSON.stringify(exercises));
+
+      alert("Exercise logged successfully!");
+    });
+  </script>
+
+</body>
+</html>

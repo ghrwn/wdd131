@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Tracker Pro - Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="exercise-log.html">Exercise Log</a></li>
+      <li><a href="progress-tracker.html">Progress Tracker</a></li>
+      <li><a href="#">Settings</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <header>
+      <div class="top-nav">
+        <a href="index.html">Fitness Tracker Pro</a>
+        <input type="text" placeholder="Search..." />
+        <button>Upload</button>
+        <button>Notifications</button>
+        <button>Settings</button>
+      </div>
+    </header>
+
+    <section class="fitness-data">
+      <h2>Fitness Data</h2>
+      <div class="data-box">
+        <h3>Total Steps: 10,000</h3>
+        <h3>Calories Burned: 500</h3>
+        <h3>Goal Progress: 50%</h3>
+      </div>
+    </section>
+
+    <section>
+      <a href="exercise-log.html" class="button">Log New Exercise</a>
+      <a href="progress-tracker.html" class="button">View Your Progress</a>
+    </section>
+  </div>
+
+  <footer>
+    <p>Last Modified: <span id="lastModified"></span></p>
+    <p><a href="references.html">References</a></p>
+  </footer>
+
+  <script>
+    document.getElementById('lastModified').textContent = document.lastModified;
+  </script>
+
+</body>
+</html>
