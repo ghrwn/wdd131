@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fitness Tracker Pro - Progress Tracker</title>
+  <title>Fitness Tracker Pro - Settings</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -33,8 +33,16 @@
     </header>
 
     <main>
-      <h2>Your Progress</h2>
-      <canvas id="progressChart" width="400" height="200"></canvas>
+      <h2>Settings</h2>
+      <section>
+        <h3>User Preferences</h3>
+        <form>
+          <label for="notifications">Enable Notifications:</label>
+          <input type="checkbox" id="notifications" name="notifications" checked>
+
+          <button type="submit">Save Settings</button>
+        </form>
+      </section>
     </main>
   </div>
 
@@ -43,36 +51,8 @@
     <p><a href="references.html">References</a></p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     document.getElementById('lastModified').textContent = document.lastModified;
-
-    const exercises = JSON.parse(localStorage.getItem("exercises")) || [];
-    const dates = exercises.map(exercise => new Date().toLocaleDateString());
-    const caloriesBurned = exercises.map(exercise => exercise.calories);
-
-    const ctx = document.getElementById('progressChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: dates,
-        datasets: [{
-          label: 'Calories Burned',
-          data: caloriesBurned,
-          borderColor: 'rgba(75, 192, 192, 1)',
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          fill: true,
-          tension: 0.4
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
   </script>
 
 </body>

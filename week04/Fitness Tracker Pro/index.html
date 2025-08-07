@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fitness Tracker Pro - Home</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <!-- Sidebar -->
   <div class="sidebar">
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="exercise-log.html">Exercise Log</a></li>
-      <li><a href="progress-tracker.html">Progress Tracker</a></li>
-      <li><a href="#">Settings</a></li>
+      <li><a href="index.html"><img src="icons/home-icon.png" alt="Home"></a></li>
+      <li><a href="exercise-log.html"><img src="icons/exercise-icon.png" alt="Exercise Log"></a></li>
+      <li><a href="progress-tracker.html"><img src="icons/progress-icon.png" alt="Progress Tracker"></a></li>
+      <li><a href="settings.html"><img src="icons/settings-icon.png" alt="Settings"></a></li>
     </ul>
   </div>
 
@@ -22,20 +22,24 @@
   <div class="main-content">
     <header>
       <div class="top-nav">
-        <a href="index.html">Fitness Tracker Pro</a>
-        <input type="text" placeholder="Search..." />
-        <button>Upload</button>
-        <button>Notifications</button>
-        <button>Settings</button>
+        <a href="index.html" class="logo">Fitness Tracker Pro</a>
+        <input type="text" placeholder="Search...">
+        <div class="nav-buttons">
+          <button>Upload</button>
+          <button>Notifications</button>
+          <button>Settings</button>
+        </div>
       </div>
     </header>
 
     <section class="fitness-data">
       <h2>Fitness Data</h2>
       <div class="data-box">
-        <h3>Total Steps: 10,000</h3>
-        <h3>Calories Burned: 500</h3>
-        <h3>Goal Progress: 50%</h3>
+        <h3>Total Steps: <span id="total-steps">0</span></h3>
+        <h3>Calories Burned: <span id="total-calories">0</span></h3>
+        <h3>Goal Progress: <span id="goal-progress">0%</span></h3>
+        <!-- Image inside Fitness Data Section -->
+        <img src="images/image.jpg" alt="Fitness Image">
       </div>
     </section>
 
@@ -52,6 +56,39 @@
 
   <script>
     document.getElementById('lastModified').textContent = document.lastModified;
+
+    // Retrieve exercises from localStorage (or initialize as empty array)
+    const exercises = JSON.parse(localStorage.getItem("exercises")) || [];
+
+    // Function to calculate total calories burned
+    function calculateTotalCalories() {
+      return exercises.reduce((total, exercise) => total + parseFloat(exercise.calories), 0);
+    }
+
+    // Function to calculate total steps
+    function calculateTotalSteps() {
+      return exercises.reduce((total, exercise) => total + parseFloat(exercise.steps), 0);
+    }
+
+    // Function to calculate goal progress
+    function calculateGoalProgress(totalCalories) {
+      const goalCalories = 1000; // Goal is set to 1000 calories
+      return Math.min((totalCalories / goalCalories) * 100, 100).toFixed(2);
+    }
+
+    // Function to update Fitness Data dynamically
+    function updateFitnessData() {
+      const totalCalories = calculateTotalCalories();
+      const totalSteps = calculateTotalSteps();
+      const progress = calculateGoalProgress(totalCalories);
+
+      document.getElementById("total-calories").textContent = totalCalories;
+      document.getElementById("goal-progress").textContent = `${progress}%`;
+      document.getElementById("total-steps").textContent = totalSteps;
+    }
+
+    // Initial rendering of fitness data
+    updateFitnessData();
   </script>
 
 </body>

@@ -3,7 +3,7 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: #f4f4f4;
   margin: 0;
-  padding: 20px;
+  padding: 0;
 }
 
 header {
@@ -11,6 +11,9 @@ header {
   color: white;
   text-align: center;
   padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 h1, h2 {
@@ -31,7 +34,7 @@ button:hover {
 
 /* Sidebar Styles */
 .sidebar {
-  width: 200px;
+  width: 80px;
   position: fixed;
   top: 0;
   left: 0;
@@ -39,6 +42,9 @@ button:hover {
   background-color: #333;
   color: white;
   padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sidebar ul {
@@ -47,17 +53,24 @@ button:hover {
 }
 
 .sidebar ul li {
-  padding: 10px;
+  padding: 20px;
+  text-align: center;
 }
 
 .sidebar ul li a {
   color: white;
   text-decoration: none;
+  display: block;
+}
+
+.sidebar ul li a img {
+  width: 30px;
+  margin-bottom: 5px;
 }
 
 /* Main Content */
 .main-content {
-  margin-left: 220px;
+  margin-left: 100px;
   padding: 20px;
 }
 
@@ -73,11 +86,74 @@ button:hover {
   font-weight: bold;
 }
 
+.top-nav input {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  width: 200px;
+}
+
+.nav-buttons button {
+  margin-left: 10px;
+  padding: 10px;
+}
+
+/* Fitness Data Section */
+.fitness-data {
+  margin-top: 30px;
+}
+
+.data-box {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.data-box h3 {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+/* Button Styles */
+.button {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+footer a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
 /* Responsive Styles */
 @media only screen and (max-width: 768px) {
   .sidebar {
     width: 100%;
     position: static;
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .sidebar ul li {
+    padding: 10px;
   }
 
   .main-content {
@@ -89,7 +165,20 @@ button:hover {
     text-align: center;
   }
 
-  button {
+  .fitness-data .data-box {
+    padding: 15px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .top-nav input {
+    width: 80%;
+    margin-top: 10px;
+  }
+
+  .nav-buttons button {
     width: 100%;
   }
 }

@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fitness Tracker Pro - Log Exercise</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <!-- Sidebar -->
   <div class="sidebar">
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="exercise-log.html">Exercise Log</a></li>
-      <li><a href="progress-tracker.html">Progress Tracker</a></li>
-      <li><a href="#">Settings</a></li>
+      <li><a href="index.html"><img src="icons/home-icon.png" alt="Home"></a></li>
+      <li><a href="exercise-log.html"><img src="icons/exercise-icon.png" alt="Exercise Log"></a></li>
+      <li><a href="progress-tracker.html"><img src="icons/progress-icon.png" alt="Progress Tracker"></a></li>
+      <li><a href="settings.html"><img src="icons/settings-icon.png" alt="Settings"></a></li>
     </ul>
   </div>
 
@@ -22,11 +22,13 @@
   <div class="main-content">
     <header>
       <div class="top-nav">
-        <a href="index.html">Fitness Tracker Pro</a>
-        <input type="text" placeholder="Search..." />
-        <button>Upload</button>
-        <button>Notifications</button>
-        <button>Settings</button>
+        <a href="index.html" class="logo">Fitness Tracker Pro</a>
+        <input type="text" placeholder="Search...">
+        <div class="nav-buttons">
+          <button>Upload</button>
+          <button>Notifications</button>
+          <button>Settings</button>
+        </div>
       </div>
     </header>
 
@@ -42,8 +44,27 @@
         <label for="calories">Calories Burned:</label>
         <input type="number" id="calories" name="calories" required>
 
+        <label for="steps">Steps:</label>
+        <input type="number" id="steps" name="steps" required>
+
         <button type="submit">Log Exercise</button>
       </form>
+
+      <h3>Logged Exercises</h3>
+      <ul id="exercise-list">
+        <!-- Exercises will appear here -->
+      </ul>
+
+      <button id="reset-btn">Reset All Exercises</button>
+
+      <section class="fitness-data">
+        <h2>Fitness Data</h2>
+        <div class="data-box">
+          <h3>Total Steps: <span id="total-steps">0</span></h3>
+          <h3>Calories Burned: <span id="total-calories">0</span></h3>
+          <h3>Goal Progress: <span id="goal-progress">0%</span></h3>
+        </div>
+      </section>
     </main>
   </div>
 
@@ -55,23 +76,112 @@
   <script>
     document.getElementById('lastModified').textContent = document.lastModified;
 
-    const exercises = JSON.parse(localStorage.getItem("exercises")) || [];
+    // Get exercises from localStorage (or initialize as empty array)
+    let exercises = JSON.parse(localStorage.getItem("exercises")) || [];
 
+    // Function to calculate total calories burned
+    function calculateTotalCalories() {
+      return exercises.reduce((total, exercise) => total + parseFloat(exercise.calories), 0);
+    }
+
+    // Function to calculate total steps
+    function calculateTotalSteps() {
+      return exercises.reduce((total, exercise) => total + parseFloat(exercise.steps), 0);
+    }
+
+    // Function to calculate goal progress
+    function calculateGoalProgress(totalCalories) {
+      const goalCalories = 1000; // Goal is set to 1000 calories
+      return Math.min((totalCalories / goalCalories) * 100, 100).toFixed(2);
+    }
+
+    // Function to update Fitness Data dynamically
+    function updateFitnessData() {
+      const totalCalories = calculateTotalCalories();
+      const totalSteps = calculateTotalSteps();
+      const progress = calculateGoalProgress(totalCalories);
+
+      document.getElementById("total-calories").textContent = totalCalories;
+      document.getElementById("goal-progress").textContent = `${progress}%`;
+      document.getElementById("total-steps").textContent = totalSteps;
+    }
+
+    // Initial rendering of fitness data
+    updateFitnessData();
+
+    // Function to render exercises
+    function renderExercises() {
+      const exerciseList = document.getElementById('exercise-list');
+      exerciseList.innerHTML = '';  // Clear the list before re-rendering
+      exercises.forEach((exercise, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${exercise.name} - Duration: ${exercise.duration} minutes, Calories: ${exercise.calories}, Steps: ${exercise.steps}`;
+        
+        // Create a delete button for each exercise
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete-btn');
+        deleteButton.addEventListener('click', () => deleteExercise(index));
+
+        li.appendChild(deleteButton);
+        exerciseList.appendChild(li);
+      });
+    }
+
+    // Function to delete an exercise
+    function deleteExercise(index) {
+      exercises.splice(index, 1);  // Remove the exercise from the array
+      localStorage.setItem("exercises", JSON.stringify(exercises)); // Update localStorage
+      renderExercises();  // Re-render the list
+      updateFitnessData(); // Update Fitness Data after deletion
+    }
+
+    // Function to reset all exercises
+    function resetAllExercises() {
+      if (confirm("Are you sure you want to reset all exercises?")) {
+        localStorage.removeItem("exercises");  // Clear all exercises from localStorage
+        exercises.length = 0;  // Clear the exercises array
+        renderExercises();  // Re-render the empty list
+        updateFitnessData(); // Update Fitness Data after reset
+      }
+    }
+
+    // Reset all exercises when the reset button is clicked
+    document.getElementById('reset-btn').addEventListener('click', resetAllExercises);
+
+    // Form submit event to log new exercise
     const exerciseForm = document.getElementById("exercise-form");
-
     exerciseForm.addEventListener("submit", (event) => {
       event.preventDefault();
 
       const name = document.getElementById("exercise-name").value;
       const duration = document.getElementById("duration").value;
       const calories = document.getElementById("calories").value;
+      const steps = document.getElementById("steps").value;
 
-      const newExercise = { name, duration, calories };
+      // Create a new exercise object
+      const newExercise = { name, duration, calories, steps };
+      
+      // Add the new exercise to the exercises array
       exercises.push(newExercise);
+
+      // Save the exercises array to localStorage
       localStorage.setItem("exercises", JSON.stringify(exercises));
+
+      // Re-render the exercise list
+      renderExercises();
+
+      // Update Fitness Data
+      updateFitnessData();
+
+      // Clear the form inputs
+      exerciseForm.reset();
 
       alert("Exercise logged successfully!");
     });
+
+    // Initial render of exercises
+    renderExercises();
   </script>
 
 </body>
