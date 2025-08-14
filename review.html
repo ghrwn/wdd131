@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Confirmation</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Link to your CSS -->
+    <script>
+        window.onload = function() {
+            let reviewCount = localStorage.getItem('reviewCount');
+            reviewCount = parseInt(reviewCount) + 1;
+            localStorage.setItem('reviewCount', reviewCount);
+
+            document.getElementById('reviewCount').textContent = `Total Reviews: ${reviewCount}`;
+
+            const currentDate = new Date();
+            const formattedDate = currentDate.toLocaleString();
+            document.getElementById('lastModified').textContent = `Last Modification: ${formattedDate}`;
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Thank You for Your Review!</h1>
+    </header>
+    <main>
+        <p>Your review has been submitted successfully.</p>
+        <p id="reviewCount"></p>
+        <a href="form.html">Submit another review</a>
+    </main>
+    <footer>
+        <p>&copy; 2024 🌸 Rubia Magdelena Francesco | Madagascar</p>
+        <p id="lastModified"></p> <!-- Real-time last modification timestamp -->
+    </footer>
+</body>
+</html>

@@ -1,68 +1,134 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f4ff; /* Light lavender background */
+    color: #4f2b8b; /* Dark purple text */
 }
 
+/* Header Styling */
 header {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-  text-align: center;
+    background-color: #4f2b8b; /* Dark purple background */
+    color: white;
+    text-align: center;
+    padding: 1rem;
 }
 
-nav button {
-  background-color: #444;
-  color: white;
-  border: none;
-  padding: 10px;
-  margin: 5px;
-  cursor: pointer;
+h1 {
+    font-size: 2rem;
 }
 
-button:hover {
-  background-color: #666;
+/* Form Styling */
+form {
+    background-color: white;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#temple-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 20px;
+/* Label Styling */
+label {
+    display: block;
+    margin: 1rem 0 0.5rem;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
-.temple-card {
-  width: 100%;
-  max-width: 300px;
-  margin: 15px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  text-align: center;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+/* Select and Input Styling */
+select, input[type="text"], input[type="date"], textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
 }
 
-.temple-card img {
-  width: 100%;
-  height: auto;
-  margin-top: 10px;
+/* Stars (Rating) Styling */
+fieldset {
+    margin-bottom: 1rem;
+    border: none;
+    padding: 0;
 }
 
+fieldset label {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+input[type="radio"] {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+input[type="radio"]:checked ~ label {
+    color: #f2a600; /* Orange color for filled stars */
+}
+
+input[type="radio"]:not(:checked) ~ label {
+    color: #e0e0e0; /* Grey color for empty stars */
+}
+
+/* Checkbox Styling */
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Textarea Styling */
+textarea {
+    height: 150px;
+    font-size: 1rem;
+}
+
+/* Submit Button Styling */
+input[type="submit"] {
+    background-color: #f2a600; /* Orange button */
+    color: white;
+    padding: 0.7rem 2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+input[type="submit"]:hover {
+    background-color: #d98c00; /* Darker orange on hover */
+}
+
+/* Footer Styling */
 footer {
-  text-align: center;
-  padding: 10px;
-  font-size: 14px;
+    background-color: #4f2b8b; /* Dark purple footer */
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
 }
 
-@media (min-width: 768px) {
-  .temple-card {
-    width: 45%;
-  }
+footer p {
+    margin: 0;
 }
 
-@media (min-width: 1024px) {
-  .temple-card {
-    width: 30%;
-  }
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    form {
+        padding: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+    }
 }
