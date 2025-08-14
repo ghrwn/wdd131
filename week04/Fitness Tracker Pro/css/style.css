@@ -157,24 +157,23 @@ footer a {
   /* Sidebar: Adjust to horizontal layout in mobile view */
   .sidebar {
     width: 100%;
-    position: static;  /* Remove fixed position */
+    position: static;
     text-align: center;
     padding-top: 10px;
   }
 
   .sidebar ul {
-    flex-direction: row; /* Horizontal layout for mobile */
-    justify-content: space-around;  /* Space icons equally */
+    flex-direction: row;
+    justify-content: space-around;
     padding: 0;
   }
 
   .sidebar ul li {
-    padding: 5px 10px; /* Reduced padding for better fit */
+    padding: 5px 10px;
   }
 
-  /* Resize icons in mobile view */
   .sidebar ul li a img {
-    width: 30px;  /* Smaller icon size for mobile */
+    width: 30px;
     height: 30px;
   }
 
@@ -187,23 +186,19 @@ footer a {
     text-align: center;
   }
 
-  /* Fitness Data Section */
   .fitness-data .data-box {
     padding: 15px;
   }
 
-  /* Button Styles */
   .button {
     width: 100%;
   }
 
-  /* Top Nav Search */
   .top-nav input {
     width: 80%;
     margin-top: 10px;
   }
 
-  /* Adjust buttons for mobile */
   .nav-buttons button {
     width: 100%;
   }
